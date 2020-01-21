@@ -1,6 +1,16 @@
+h1{
+    text-align: center;
+}
 body{
     text-align: center;
 }
 table{
     margin: auto;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+td{
+    border-left: 1px solid black;
+    border-top: 1px solid black;
 }
