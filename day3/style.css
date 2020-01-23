@@ -29,3 +29,9 @@ td{
     font-weight: bold;
     text-indent: 10%;
 }
+table[class="insideTable"]{
+    border-width: 0px;
+}
+table[class="insideTable"] td{
+    border: 0px;
+}
