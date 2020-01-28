@@ -14,21 +14,21 @@ h1{
     padding: 20px;
 }
 body{
-    text-align: center;
     background-image:url(timg.jpg);
     background-repeat: no-repeat;
     background-position: center 5px;
 }
-table{
-    
+table,td{   
     margin: auto;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    border-style: solid;
+    border-width: thick;  
+    border-color: cadetblue;
+    border-radius: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
     text-align: center;
 }
 td{
-    border-left: 1px solid black;
-    border-top: 1px solid black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 32px;
 }
