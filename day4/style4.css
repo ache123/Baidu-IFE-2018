@@ -42,3 +42,10 @@ table[class="insideTable"]{
 table[class="insideTable"] td{
     border: 0px;
 }
+ul{
+    text-align: left;
+    list-style-type: square;
+}
+ul.img{
+    list-style-image: url(1580208996.jpg);
+}
