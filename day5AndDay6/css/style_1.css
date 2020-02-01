@@ -1,26 +1,33 @@
-h1{
+h1 {
     line-height: 60px;
 }
-h2{
+h2 {
     line-height: 40px;
 }
-.lineDiv div:nth-child(1){
+#essential div:nth-child(1), 
+#contact div:nth-child(1){
     float: left;
 }
 
-.lineDiv div:nth-child(2){
-    float:left;
-    margin-left: 50px;
-}
-
-.lineDiv div:nth-child(3){
+#essential div:nth-child(2),
+#contact div:nth-child(2){
     float: left;
     margin-left: 50px;
 }
 
-strong{
+#essential div:nth-child(3),
+#contact div:nth-child(3){
+    float: left;
+    margin-left: 50px;
+}
+
+strong {
     margin-right: 10px;
 }
-.blockDiv{
+.blockDiv {
     margin-top: 15px;
 }
+.separate{
+    clear: both;
+}
+
