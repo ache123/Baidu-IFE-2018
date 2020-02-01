@@ -1,0 +1,26 @@
+h1{
+    line-height: 60px;
+}
+h2{
+    line-height: 40px;
+}
+.lineDiv div:nth-child(1){
+    float: left;
+}
+
+.lineDiv div:nth-child(2){
+    float:left;
+    margin-left: 50px;
+}
+
+.lineDiv div:nth-child(3){
+    float: left;
+    margin-left: 50px;
+}
+
+strong{
+    margin-right: 10px;
+}
+.blockDiv{
+    margin-top: 15px;
+}
