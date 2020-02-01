@@ -1,0 +1,54 @@
+h1 {
+    line-height: 60px;
+}
+h2 {
+    line-height: 40px;
+}
+.essential-information div:nth-child(1), 
+.contact-information div:nth-child(1) {
+    float: left;
+}
+
+.essential-information div:nth-child(2), 
+.contact-information div:nth-child(2) {
+    float: left;
+    margin-left: 50px;
+}
+
+.essential-information div:nth-child(3), 
+.contact-information div:nth-child(3) {
+    float: left;
+    margin-left: 50px;
+}
+
+strong {
+    margin-right: 10px;
+}
+.blockDiv {
+    margin-top: 15px;
+}
+
+#wrapper{
+    display: flex;
+}
+
+.sidebar{
+    width: 15%;
+    float: left;
+    background-color: cornflowerblue;
+    color: white;
+    text-align: center;
+}
+.content{
+    width: 76%;
+    float: right;
+    padding-left: 20px;
+}
+
+p{
+    font-size: 3em;
+}
+
+br{
+    clear: both;
+}
