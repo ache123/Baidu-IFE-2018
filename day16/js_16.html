@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+
+<body>
+    <h1>Demo</h1>
+    <p id="content-wrapper">你是谁？</p>
+    <input id="name-input" type="text" placeholder="输入你的名字">
+    <button id="send-btn">发送</button>
+    <script>
+        document.getElementById("send-btn").onclick = function () {
+            document.getElementById("content-wrapper").innerHTML = 'Hello ' + document.getElementById("name-input").value;
+        }
+    </script>
+    <!-- <h1>Demo</h1>
+    <p id="content-wrapper">Hello World</p>
+    <script>
+        console.log(document.getElementById("content-wrapper").innerHTML);
+        // alert(document.getElementById("content-wrapper").innerHTML);
+        //document.getElementById返回指定 ID 的第一个对象的引用
+        //innerHTML 属性设置或返回表格行的开始和结束标签之间的 HTML
+    </script> -->
+</body>
+
+</html>

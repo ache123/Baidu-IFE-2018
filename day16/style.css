@@ -1,0 +1,40 @@
+html{
+    font-size: 20px;
+}
+h1{
+    text-align: center;
+    color:red;
+    font-size: 2.6rem;
+    font-weight: normal;
+    text-decoration: underline yellow wavy;
+    text-shadow: 3px 3px 5px red;
+    font-style: italic;
+}
+body{
+    text-align: center;
+}
+table{
+    margin: auto;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+td{
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 32px;
+}
+.information{
+    font-weight: bold;
+    text-indent: 10%;
+}
+table[class="insideTable"]{
+    border-width: 0px;
+}
+table[class="insideTable"] td{
+    border: 0px;
+}
+#hidingHobby{
+    margin-top: 10px;
+}
