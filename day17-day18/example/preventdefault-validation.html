@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Prevent default example</title>
+    <style>
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label for="fname">First name: </label>  
+            <!-- for属性规定label与哪个表单元素绑定，显式 -->
+            <!-- <label>aaa:<input type="text" name="fame"/></label> -->  
+            <!-- 隐式 -->
+            <input id="fname" type="text">
+        </div>
+        <div>
+            <label for="lname">Last name: </label>
+            <input id="lname" type="text">
+        </div>
+        <div>
+            <input id="submit" type="submit">
+        </div>
+    </form>
+    <p></p>
+
+
+    <script>
+        const form = document.querySelector('form');
+        const fname = document.getElementById('fname');
+        const lname = document.getElementById('lname');
+        const para = document.querySelector('p');
+
+        form.onsubmit = function (e) {  //表单事件
+            if (fname.value === '' || lname.value === '') {
+                e.preventDefault();  //取消事件默认动作（这里的默认动作是提交）
+                para.textContent = 'You need to fill in both names!'
+            }
+        }
+
+    </script>
+</body>
+
+</html>
