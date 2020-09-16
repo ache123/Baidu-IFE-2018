@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>99</title>
+</head>
+
+<body>
+    <table id="myTable">
+        
+    </table>
+    <script>
+        let table = document.getElementById("myTable");
+        for (let n = 1; n <= 9; n++) {
+            let tr = document.createElement("tr");
+            for (let m = n; m <= 9; m++) {
+                tr.innerHTML = tr.innerHTML + `<td> ${n} * ${m} = ${n * m} </td>`;
+            }
+            table.appendChild(tr);
+        }
+        
+    </script>
+</body>
+
+</html>
