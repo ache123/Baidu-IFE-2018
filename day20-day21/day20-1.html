@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>day20</title>
+</head>
+
+<body>
+    <input id="name" type="text">
+    <button id="submit-btn" accesskey="a">Submit</button>
+    <script>
+
+        const inputContent = document.getElementById("name");
+        const submitBtn = document.getElementById("submit-btn");
+
+        submitBtn.addEventListener("click",(event) => {
+            console.log(inputContent.value);
+        });
+
+        window.addEventListener("keyup", (event) => {
+            if (event.keyCode == 13){
+                console.log(inputContent.value);
+            }
+            if(event.keyCode == 27){
+                inputContent.value = null;
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>
