@@ -1,0 +1,74 @@
+<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+<button id="fade-btn">淡出</button>
+<script>
+    const obj = document.getElementById("fade-obj");
+    // let number = document.defaultView.getComputedStyle(obj, null).opacity;
+    const btn = document.getElementById("fade-btn");
+
+    /*
+        获取元素的style对象有
+        1. element.style 属性：只能获取内联样式，只能获取已设置的样式。支持读写。
+        2. window.getComputedStyle(element,pseudo-element) 或 document.defaultView.getComputedStyle(element,pseudo-element); 
+            可以获得最终样式，该元素的所有属性值，只支持读不支持写
+    */
+
+    // document.getElementById("fade-btn").onclick = () => {          
+    //     while (number > 0) {
+    //         number -= 0.001;
+    //         console.log(number);
+    //         setTimeout(fadeThisBtn(number), 50000);           
+    //     }
+    // }
+
+
+
+    /*
+        不能用上面方法，因为系统会先循环完再进入任务队列，而每轮循环生成一个任务，任务之间是没有延时的，会瞬间执行。
+    */
+
+    btn.onclick = function () {
+        // console.log(btn.textContent);
+        if (btn.textContent == "淡出") {
+            let number = 1;
+            btn.disabled = "disabled";
+
+            setTimeout(function () {
+                if (number > 0) {
+                    number -= 0.01;
+                    console.log(number);
+                    fadeThisBtn(number);
+                    setTimeout(arguments.callee, 10);           //arguments只在以function关键字定义函数时才会有
+                    if (number <= 0) {
+                        btn.textContent = "淡入";
+                        btn.disabled = false;
+                    }
+                }
+            }, 0);
+
+
+        }
+        if (btn.textContent == "淡入") {
+            let number = 0;
+            btn.disabled = "disabled";
+            setTimeout(function () {
+                if (number < 1) {
+                    number += 0.01;
+                    fadeThisBtn(number);
+                    setTimeout(arguments.callee, 10);           //arguments只在以function关键字定义函数时才会有
+                    if (number >= 1) {
+                        btn.textContent = "淡出";
+                        btn.disabled = false;
+                    }
+                }
+
+            }, 0);
+
+        }
+
+    }
+
+
+    function fadeThisBtn(number) {
+        obj.style.opacity = number;
+    }
+</script>
