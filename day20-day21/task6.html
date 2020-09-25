@@ -5,11 +5,6 @@
     <meta charset="UTF-8">
     <title>CSS Sprites</title>
     <style>
-        .contentBox {
-            position: relative;
-            margin: auto;
-        }
-
         #item {
             position: absolute;
             width: 480px;
@@ -21,9 +16,9 @@
 </head>
 
 <body>
-    <div class="contentBox">
-        <div id="item"></div>
-    </div>
+
+    <div id="item"></div>
+
 
     <script>
         const item = document.getElementById("item");
@@ -33,25 +28,25 @@
         setInterval(function () {
             setY();
         }, 100);
-        
+
         let flag = true;
         function setY() {
-            
+
             item.style.backgroundPositionY = `${y}px`;
-            
+            console.log(y);
             if (flag) {
-                y += 480;console.log(y);
+                y += 480;
                 if (y == 7680) {
                     flag = false;
                 }
             } else {
-                y -= 480;console.log(y);
+                y -= 480;
                 if (y == 0) {
                     flag = true;
                 }
             }
-            
-            
+
+
             return y;
         }
     </script>
