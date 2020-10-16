@@ -1,0 +1,123 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <button id="myBtn"></button>
+
+    <script>
+        var btn = document.getElementById("myBtn");
+        btn.onclick = function() {
+            console.log(window.event.srcElement === true);
+        }
+        btn.attachEvent("onclick", function(event) {
+            console.log(event.srcElement === this);
+        })
+    </script>
+</body>
+
+</html> -->
+<!-- 
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <ul id="test">
+        <li>
+            <p>11111111111</p>
+        </li>
+        <li>
+            <div>
+                22222222
+            </div>
+        </li>
+        <li>
+            <span>3333333333</span>
+        </li>
+        <li>4444444</li>
+    </ul>
+</body>
+
+<script>
+    var oUl = document.getElementById('test');
+    oUl.addEventListener('click', function (ev) {
+        var target = ev.target;
+        while (target !== oUl) {
+            if (target.tagName.toLowerCase() == 'li') {
+                console.log('li click~');
+                break;
+            }
+            target = target.parentNode;
+        }
+    })
+</script>
+
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .smile {
+            background-image: url(images/erik_ce204002.jpg);
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            width: 480px;
+            height: 480px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="smile"></div>
+    <script>
+        var smile = document.querySelector(".smile")
+        var positionY = 0
+
+        window.setInterval(smileChange, 100)
+
+        function smileChange() {
+            // 8160 - 480 == 7680，若设为-8160，则会切到图片以外的空白
+            if (positionY > -7680) {
+                positionY -= 480
+            } else {
+                positionY = 0
+            }
+            smile.style.backgroundPosition = "0px " + positionY + "px"
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    
+    
+    
+    <script>
+        const myList = document.getElementsByTagName("ul")[0];
+        let deepList = myList.cloneNode(true);
+        alert(deepList.childNodes.length);
+    </script>
+</body>
+
+</html>
