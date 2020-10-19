@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<body onload="getDate()">
+    <div id="txt"></div>
+</body>
+
+<script>
+    function getDate() {
+        let nowDate = new Date();
+        let year = nowDate.getFullYear();
+        let month = nowDate.getMonth();
+        let date = nowDate.getDate();
+        let day = nowDate.getDay();
+        let h = nowDate.getHours();
+        let m = nowDate.getMinutes();
+        let s = nowDate.getSeconds();
+
+
+        month = check(month);
+        date = check(date);
+        day = setDay(day);
+        h = check(h);
+        m = check(m);
+        s = check(s);
+
+        document.getElementById("txt").innerHTML = `${year}年${month}月${date}日${day} ${h}:${m}:${s}`;
+        setTimeout("getDate()",500);
+    }
+
+    function setDay(day) {
+        switch (day) {
+            case 0: return "星期日";
+            case 1: return "星期一";
+            case 2: return "星期二";
+            case 3: return "星期三";
+            case 4: return "星期四";
+            case 5: return "星期五";
+            case 6: return "星期六";
+        }
+    }
+
+    function check(temp){
+        if (temp < 10){
+            temp = "0" + temp;
+        }
+        return temp;
+    }
+
+
+</script>
+
+</html>

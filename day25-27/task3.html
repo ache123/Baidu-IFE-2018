@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<body onload="getDate()">
+    <div id="txt"></div>
+</body>
+
+<script>
+    function getDate() {
+        let nowDate = new Date();
+        let year = nowDate.getFullYear();
+        let month = nowDate.getMonth();
+        let date = nowDate.getDate();
+        let day = nowDate.getDay();
+        let h = nowDate.getHours();
+        let m = nowDate.getMinutes();
+        let s = nowDate.getSeconds();
+        let meridiem = setMeridiem(h);
+
+        month = check(month);
+        date = check(date);
+        day = setDay(day);
+        h = check(h);
+        m = check(m);
+        s = check(s);
+
+        document.getElementById("txt").innerHTML = `${year}-${year}-${date} ${day} ${h >= 12 ? h - 12 : h}:${m}:${s}  ${meridiem}`;
+        setTimeout("getDate()",500);
+    }
+
+    function setDay(day) {
+        switch (day) {
+            case 0: return "Sunday";
+            case 1: return "Monday";
+            case 2: return "Tuesday";
+            case 3: return "Wednesday";
+            case 4: return "Thursday";
+            case 5: return "Friday";
+            case 6: return "Saturday";
+        }
+    }
+
+    function check(temp){
+        if (temp < 10){
+            temp = "0" + temp;
+        }
+        return temp;
+    }
+
+    function setMeridiem(h){
+        if (h >= 12){
+            return "PM";
+        }else{
+            return "AM";
+        }
+    }
+</script>
+
+</html>
