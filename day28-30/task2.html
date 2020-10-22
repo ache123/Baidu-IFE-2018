@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+</body>
+
+<script>
+    let postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    let userInput = document.getElementById("email-input");
+    userInput.focus();
+
+    let emailSug = document.getElementById("email-sug-wrapper");
+
+    let nowSelectTipIndex = 0;
+    /*
+        keypress: 中文输入时及enter后不触发，英文输入触发一次
+        keyup：中文输入一个字母（键盘上任意键都触发）就触发两次，enter后又触发一次，英文输入触发一次
+        keydown：中文输入一个字母（键盘上任意键都触发）触发一次，enter后又触发一次，英文输入触发一次   第一个不触发
+        oninput：与keydown类似,但是按回车键，ESC键，上下左右键不会触发
+    */
+
+
+    userInput.addEventListener("keyup", (event) => {
+
+        if (event.key != "ArrowUp" && event.key != "ArrowDown" && event.key != "Enter") {
+            clearOption();
+        }
+
+        if (event.key == "Escape"){
+            userInput.select();
+        }
+
+
+        let inputTrim = getUserInputTrim();
+        console.log(event.key);
+
+        if (isNull(inputTrim)) {
+            let finishArr = createContent(inputTrim);
+            addContent(finishArr);
+        }
+
+        let liList = emailSug.children;
+        if (liList.length != 0 && (event.key == "ArrowUp" || event.key == "ArrowDown" || event.key == "Enter")) {
+            if (event.key == "ArrowUp") {
+                if (nowSelectTipIndex != 0) {
+                    nowSelectTipIndex = nowSelectTipIndex - 1;
+                } else {
+                    nowSelectTipIndex = liList.length - 1;
+                }
+            } else if (event.key == "ArrowDown") {
+                if (nowSelectTipIndex != liList.length - 1) {
+                    nowSelectTipIndex = nowSelectTipIndex + 1;
+                } else {
+                    nowSelectTipIndex = 0;
+                }
+            } else if (event.key == "Enter") {
+                let temp = liList[nowSelectTipIndex].innerHTML;
+                temp = temp.replace("&lt;", "<");
+                temp = temp.replace("&gt;", ">");
+                userInput.value = temp;
+                displayNone();
+                userInput.focus();
+            }
+        }
+
+        onlySelect(nowSelectTipIndex);
+
+    })
+
+    // userInput.oninput = () => {
+    //     // console.log('event handle');
+
+    //     let inputTrim = getUserInputTrim();
+    //     if (isNull(inputTrim)) {
+    //         let finishArr = createContent(inputTrim);
+    //         addContent(finishArr);
+    //     }
+    // }
+
+    function getUserInputTrim() {
+        return userInput.value.trim();
+    }
+
+    function createContent(inputTrim) {
+        inputTrim = inputTrim.replace("<", "&lt");
+        inputTrim = inputTrim.replace(">", "&gt");
+        let tempArr = postfixList.slice();
+        let index = inputTrim.indexOf("@");
+        let prefix = inputTrim, suffix, finishArr = [];
+        let flag = false;
+        if (index != -1) {
+            prefix = inputTrim.slice(0, index);
+            suffix = inputTrim.slice(index + 1);
+        }
+        for (let i = 0; i < tempArr.length; i++) {
+            if (tempArr[i].indexOf(suffix) == 0 || index == -1) {
+                finishArr.push(prefix + "@" + tempArr[i]);
+                flag = true;
+            }
+        }
+        if (index != -1 && !flag) {
+            for (let i = 0; i < tempArr.length; i++) {
+                finishArr.push(prefix + "@" + tempArr[i]);
+            }
+        }
+        // console.log()
+        return finishArr;
+    }
+
+    function addContent(finishArr) {
+        // emailSug.innerHTML = "";
+        // for (let i = 0; i < finishArr.length; i++) {
+        //     let li = document.createElement("li");
+        //     li.innerHTML = finishArr[i];
+        //     emailSug.appendChild(li);
+
+        // }
+
+        let liList = emailSug.children;
+        let cycle;
+        if (finishArr.length >= liList.length) {
+            for (let i = 0; i < finishArr.length; i++) {
+                if (i < liList.length) {
+                    liList[i].style.display = "list-item";
+                    liList[i].innerHTML = finishArr[i];
+
+
+                } else {
+                    let li = document.createElement("li");
+                    li.innerHTML = finishArr[i];
+                    emailSug.appendChild(li);
+                }
+            }
+        } else {
+            for (let i = 0; i < liList.length; i++) {
+                if (i < finishArr.length) {
+                    liList[i].innerHTML = finishArr[i];
+                } else {
+                    liList[i].style.display = "none";
+                }
+            }
+        }
+
+
+    }
+
+    function isNull(inputTrim) {
+        if (inputTrim) {
+            displayBlock();
+            return true;
+        } else {
+            displayNone();
+            return false;
+        }
+    }
+
+    function displayBlock() {
+        emailSug.style.display = "block";
+    }
+
+    function displayNone() {
+        emailSug.style.display = "none";
+    }
+
+    emailSug.addEventListener("mouseover", (event) => {
+        let target = event.target;
+        if (target.style.background != "red") {
+            target.style.background = "aquamarine";
+        }
+
+    });
+
+    emailSug.addEventListener("mouseout", (event) => {
+        let target = event.target;
+        if (target.style.background != "red") {
+            target.style.background = "white";
+        }
+    });
+
+    emailSug.addEventListener("click", (event) => {
+        let target = event.target;
+        let temp = target.innerHTML;
+        temp = temp.replace("&lt;", "<");
+        temp = temp.replace("&gt;", ">");
+        userInput.value = temp;
+        displayNone();
+        userInput.focus();
+    });
+
+
+    function clearOption() {
+        nowSelectTipIndex = 0;
+    }
+
+    // userInput.addEventListener("keyup", (event) => {
+    //     let liList = emailSug.children;
+    //     if (liList.length != 0 && (event.key == "ArrowUp" || event.key == "ArrowDown" || event.key == "Enter")) {
+    //         if (event.key == "ArrowUp") {
+    //             if (nowSelectTipIndex != 0) {
+    //                 nowSelectTipIndex = nowSelectTipIndex -1;
+    //             } else {
+    //                 nowSelectTipIndex = liList.length - 1;
+    //             }
+    //         } else if (event.key == "ArrowDown") {
+    //             if (nowSelectTipIndex != liList.length - 1) {
+    //                 nowSelectTipIndex = nowSelectTipIndex + 1;
+    //             } else {
+    //                 nowSelectTipIndex = 0;
+    //             }
+    //         } else if (event.key == "Enter") {
+    //             let temp = liList[nowSelectTipIndex].innerHTML;
+    //             temp = temp.replace("&lt;", "<");
+    //             temp = temp.replace("&gt;", ">");
+    //             userInput.value = temp;
+    //             displayNone();
+    //         }
+    //     }
+    //     // console.log(flag);
+
+    // })
+
+    function onlySelect(nowSelectTipIndex) {
+        let liList = emailSug.children;
+        for (let i = 0; i < liList.length; i++) {
+            if (i != nowSelectTipIndex && liList[i].style.background == "red") {
+                liList[i].style.background = "white";
+            } else if (i == nowSelectTipIndex) {
+                liList[i].style.background = "red";
+            }
+        }
+    }
+
+</script>
+
+</html>
