@@ -64,10 +64,11 @@ const product = document.getElementById("product-radio-wrapper");
 
 function createCheckBox(checkBoxParent, checkBoxArr) {
     let innerContent = ``;
-    innerContent = innerContent + `<input type="checkbox" name="region" value=0 >全选`;
+    let checkedNum = 3;
+    innerContent = innerContent + `<input type="checkbox" name="region" value=0 checked="true">全选`;
 
     for (let i = 0; i < checkBoxArr.length; i++) {
-        innerContent = innerContent + `<input type="checkbox" name="region" value=${i + 1}>${checkBoxArr[i].name}`
+        innerContent = innerContent + `<input type="checkbox" name="region" value=${i + 1} checked="true">${checkBoxArr[i].name}`
     }
 
     checkBoxParent.innerHTML = innerContent;
@@ -76,13 +77,38 @@ function createCheckBox(checkBoxParent, checkBoxArr) {
         let target = event.target;
         if (target.type == "checkbox") {
             let value = target.value;
-            if (value == 0) {
-                target.parentNode.children[1].
-            } else {
 
+            //先判断是点了全选吗
+            if (value == 0) {
+                if (target.checked == true) {
+                    target.parentNode.children[1].checked = true;
+                    target.parentNode.children[2].checked = true;
+                    target.parentNode.children[3].checked = true;
+                    checkedNum = 3;
+                }
+
+            } else {
+                //是选中吗？
+                if (target.checked == true) {
+                    checkedNum++;
+                    if (checkedNum == 3) {
+                        target.parentNode.children[0].checked = true;
+                    }
+                    console.log(checkedNum);
+                } else {
+                    //取消选择时判断是不是最后一个
+                    if (checkedNum == 1) {
+                        target.checked = true;
+                    } else {
+                        checkedNum--;
+                        target.parentNode.children[0].checked = false;
+                    }
+                    console.log(checkedNum);
+                }
             }
         }
     }
 }
 
 createCheckBox(region, regionList);
+createCheckBox(product, productList);
