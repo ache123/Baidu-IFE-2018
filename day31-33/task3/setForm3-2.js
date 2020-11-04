@@ -62,11 +62,12 @@ let productList = [{
 const region = document.getElementById("region-radio-wrapper");
 const product = document.getElementById("product-radio-wrapper");
 
-function createCheckBox(checkBoxParent) {
+function checkDiv(checkBoxParent, checkBoxArr) {
     let checkedNum = 3;
 
     checkBoxParent.onchange = (event) => {
         let target = event.target;
+        // console.log(target.nextSibling.nodeValue);
         if (target.type == "checkbox") {
             let value = target.value;
 
@@ -82,6 +83,7 @@ function createCheckBox(checkBoxParent) {
             } else {
                 //是选中吗？
                 if (target.checked == true) {
+                    checkBoxArr.push({value:Number(target.value), "name":target.nextSibling.nodeValue.trim()});
                     checkedNum++;
                     if (checkedNum == 3) {
                         target.parentNode.children[0].checked = true;
@@ -94,6 +96,8 @@ function createCheckBox(checkBoxParent) {
                     } else {
                         checkedNum--;
                         target.parentNode.children[0].checked = false;
+                        
+                        checkBoxArr.push({value:Number(target.value), "name":target.nextSibling.nodeValue.trim()});
                     }
                     console.log(checkedNum);
                 }
@@ -102,5 +106,5 @@ function createCheckBox(checkBoxParent) {
     }
 }
 
-createCheckBox(region);
-createCheckBox(product);
+checkDiv(region, regionList);
+checkDiv(product, productList);
