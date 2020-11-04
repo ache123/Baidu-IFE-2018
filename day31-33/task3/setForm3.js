@@ -81,10 +81,11 @@ function createCheckBox(checkBoxParent, checkBoxArr) {
             //先判断是点了全选吗
             if (value == 0) {
                 if (target.checked == true) {
-                    target.parentNode.children[1].checked = true;
                     target.parentNode.children[2].checked = true;
-                    target.parentNode.children[3].checked = true;
+                    target.parentNode.children[4].checked = true;
+                    target.parentNode.children[6].checked = true;
                     checkedNum = 3;
+                    console.log(checkedNum);
                 }
 
             } else {
